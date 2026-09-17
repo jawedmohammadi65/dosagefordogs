@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -25,6 +26,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://dosagefordogs.com"),
   alternates: {
     canonical: "https://dosagefordogs.com",
+  },
+  verification: {
+    google: "r7FUV7IvffMBS3DQ7Zpb7JvsNhDQyHRUNuo1zBjffGA",
+    other: {
+      "msvalidate.01": "E36619231AF623BBDBFB4F8B36D2521C",
+    },
   },
   openGraph: {
     title: "Dosage for Dogs — Safe Medication Dosage Charts & Calculator",
@@ -57,6 +64,20 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-1X5J9JFQ80"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1X5J9JFQ80');
+          `}
+        </Script>
       </body>
     </html>
   );
